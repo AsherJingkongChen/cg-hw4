@@ -37,10 +37,16 @@ public:
     inline vec3 operator*(const vec3 &v) const { return {e[0] * v.e[0], e[1] * v.e[1], e[2] * v.e[2]}; }
     inline vec3 operator/(const vec3 &v) const { return {e[0] / v.e[0], e[1] / v.e[1], e[2] / v.e[2]}; }
 
+    inline vec3 operator*(const T &scalar) const { return {e[0] * scalar, e[1] * scalar, e[2] * scalar}; }
+    inline vec3 operator/(const T &scalar) const { return {e[0] / scalar, e[1] / scalar, e[2] / scalar}; }
+
     inline vec3 &operator-=(const vec3 &v) { return *this = *this - v; }
     inline vec3 &operator+=(const vec3 &v) { return *this = *this + v; }
     inline vec3 &operator*=(const vec3 &v) { return *this = *this * v; }
     inline vec3 &operator/=(const vec3 &v) { return *this = *this / v; }
+
+    inline vec3 &operator*=(const T &scalar) { e[0] *= scalar; e[1] *= scalar; e[2] *= scalar; return *this; }
+    inline vec3 &operator/=(const T &scalar) { e[0] /= scalar; e[1] /= scalar; e[2] /= scalar; return *this; }
 
     inline vec3<bool> operator!() const { return {!e[0], !e[1], !e[2]}; }
     inline vec3<bool> operator!=(const vec3 &v) const { return !(*this == v); }
@@ -91,9 +97,18 @@ public:
         return os << '{' << v.e[0] << ' ' << v.e[1] << ' ' << v.e[2] << '}';
     }
 
+    template <typename U>
+    friend inline vec3<U> operator*(const U &scalar, const vec3<U> &v);
+
 private:
     std::array<T, 3> e;
 };
+
+template <typename T>
+inline vec3<T> operator*(const T &scalar, const vec3<T> &v)
+{
+    return {scalar * v.x(), scalar * v.y(), scalar * v.z()};
+}
 
 template <typename T>
 inline vec3<T> select(const vec3<bool> &condition, const vec3<T> &true_value, const vec3<T> &false_value)

@@ -1,6 +1,6 @@
-# Graphic Rendering Demo
+# Graphic Ray-tracing Demo
 
-A simple hand-written application demonstrating basic rendering using C++.
+A simple hand-written application demonstrating basic ray-tracing using C++.
 
 
 ![collage](collage.png)
@@ -58,3 +58,33 @@ The project includes one example:
 ### Linux
 
 ### macOS
+
+## Features
+
+This ray tracer supports:
+
+*   **Geometry:** Renders scenes with multiple spheres.
+*   **Ray Tracing:**
+    *   Recursive tracing for reflections and refractions (Snell's Law).
+    *   Configurable maximum recursion depth (default: 5).
+*   **Materials:** Customizable properties including:
+    *   Albedo (base color)
+    *   Diffuse and specular coefficients
+    *   Shininess
+    *   Reflectivity and transparency
+    *   Refractive index
+*   **Lighting & Shading:**
+    *   Multiple point lights with configurable attenuation.
+    *   Hard shadow calculation.
+    *   Phong-like shading (ambient, diffuse, specular).
+*   **Image Quality:**
+    *   Anti-aliasing via stochastic supersampling (64 samples/pixel).
+    *   Fresnel effect (Schlick's approximation) for realistic transparency.
+    *   Shadow acne prevention.
+*   **Output:** Generates `.ppm` image files.
+
+The program produces four example images:
+1.  `1_multisphere.ppm`: Multi-sphere scene.
+2.  `2_shadow.ppm`: Scene with shadows.
+3.  `3_reflection.ppm`: Scene with reflections.
+4.  `4_transmission.ppm`: Scene with transparency and refraction.

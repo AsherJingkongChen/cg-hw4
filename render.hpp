@@ -6,7 +6,6 @@
 #include <functional>
 #include <vector>
 
-// `void shader(uint32_t x, uint32_t y, T& datum, const std::vector<T>& data);`
 template <typename T>
 using shader_t = std::function<void(uint32_t, uint32_t, T &, const std::vector<T> &)>;
 
